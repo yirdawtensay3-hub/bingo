@@ -1,0 +1,28 @@
+{
+  "name": "bingo-bot",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev:frontend": "npm run dev --workspace frontend -- --host",
+    "dev:backend": "npm run start:dev --workspace backend",
+    "dev": "concurrently --kill-others-on-fail \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "build": "npm run build --workspace frontend && npm run build --workspace backend",
+    "start": "concurrently --kill-others-on-fail \"npm start --workspace frontend\" \"npm start --workspace backend\"",
+    "start:prod": "concurrently --kill-others-on-fail \"npm start --workspace frontend\" \"npm run start:prod --workspace backend\"",
+    "start:backend": "npm start --workspace backend"
+  },
+  "author": "Michael Yirdaw",
+  "devDependencies": {
+    "concurrently": "^9.2.0",
+    "typescript": "^5.9.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@nestjs/websockets": "^11.1.6"
+  }
+}
